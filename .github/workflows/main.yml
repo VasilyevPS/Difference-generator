@@ -24,7 +24,7 @@ jobs:
       - name: Estimate code coverage
         uses: paambaati/codeclimate-action@v2.7.4
         env:
-          CODECLIMATE_TEST_REPORTER_ID: ${{secrets.CODECLIMATE_TEST_REPORTER_ID}}
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
           coverageCommand: make report
