@@ -21,11 +21,11 @@ public class Comparator {
                 keyDiff.put("newValue", data2.get(key));
             } else if (data1.containsKey(key) && !data2.containsKey(key)) {
                 keyDiff.put("key", key);
-                keyDiff.put("status", "deleted");
+                keyDiff.put("status", "removed");
                 keyDiff.put("oldValue", data1.get(key));
             } else if (!Objects.equals(data1.get(key), data2.get(key))) {
                 keyDiff.put("key", key);
-                keyDiff.put("status", "changed");
+                keyDiff.put("status", "updated");
                 keyDiff.put("oldValue", data1.get(key));
                 keyDiff.put("newValue", data2.get(key));
             } else {

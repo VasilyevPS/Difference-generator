@@ -15,8 +15,7 @@ public class Parser {
     public static ObjectMapper chooseMapper(String fileExtension) throws Exception {
         return switch (fileExtension) {
             case ("json") -> new ObjectMapper();
-            case ("yaml") -> new ObjectMapper(new YAMLFactory());
-            case ("yml") -> new ObjectMapper(new YAMLFactory());
+            case ("yaml"), ("yml") -> new ObjectMapper(new YAMLFactory());
             default -> throw new Exception("Format "  + fileExtension + " is not supported by gendiff");
         };
     }
