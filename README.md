@@ -4,4 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a18102772b8cb1d5a257/test_coverage)](https://codeclimate.com/github/VasilyevPS/java-project-71/test_coverage)
 
 ### Asciinema - JSON comparison
-https://asciinema.org/a/pyM9DatJRNIE0uNYfPLD2iaAX
+https://asciinema.org/a/0dU5EvOKXfyUrpVvpCanWxlV4
+
+### Asciinema - YAML comparison
+https://asciinema.org/a/izYd8Gcqb1OISICi5VXV3R4qP
