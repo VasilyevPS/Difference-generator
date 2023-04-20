@@ -20,7 +20,7 @@ public class Differ {
         Map<String, Object> data1 = Parser.parse(content1, fileExtension1);
         Map<String, Object> data2 = Parser.parse(content2, fileExtension2);
 
-        return Formatter.chooseFormat(Comparator.compare(data1, data2), "stylish");
+        return Formatter.chooseFormat(Comparator.compare(data1, data2), format);
     }
 
     public static String generate(String filepath1, String filepath2) throws Exception {
