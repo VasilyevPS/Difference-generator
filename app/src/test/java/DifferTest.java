@@ -1,5 +1,11 @@
 import hexlet.code.Differ;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
@@ -50,6 +56,21 @@ public class DifferTest {
             Property 'setting3' was updated. From true to 'none'
             """;
 
+    private static String expectedResultJson;
+
+    private static Path getAbsolutePath(String testResultFile) {
+        return Paths.get("./src/test/resources/", testResultFile).toAbsolutePath().normalize();
+    }
+    private static String readTestResults(String testFile) throws Exception {
+        Path testPath = getAbsolutePath(testFile);
+        return Files.readString(testPath);
+    }
+
+    @BeforeAll
+    public static void beforeAll() throws Exception {
+        expectedResultJson = readTestResults("expectedResultJson.json");
+    }
+
     @Test
     public void testJsonFiles() throws Exception {
         String result = Differ.generate(pathJson1, pathJson2);
@@ -71,5 +92,17 @@ public class DifferTest {
     public void testYamlFilesPlain() throws Exception {
         String result = Differ.generate(pathYaml1, pathYaml2, "plain");
         assertThat(result).isEqualTo(expectedResultPlain);
+    }
+
+    @Test
+    public void testJsonFilesJson() throws Exception {
+        String result = Differ.generate(pathJson1, pathJson2, "json");
+        assertThat(result).isEqualTo(expectedResultJson);
+    }
+
+    @Test
+    public void testYamlFilesJson() throws Exception {
+        String result = Differ.generate(pathYaml1, pathYaml2, "json");
+        assertThat(result).isEqualTo(expectedResultJson);
     }
 }
