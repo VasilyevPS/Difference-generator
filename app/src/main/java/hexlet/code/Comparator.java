@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -14,7 +14,7 @@ public class Comparator {
         Set<String> keys = new TreeSet<>(data1.keySet());
         keys.addAll(data2.keySet());
         for (String key: keys) {
-            Map<String, Object> keyDiff = new HashMap<>();
+            Map<String, Object> keyDiff = new LinkedHashMap<>();
             if (!data1.containsKey(key) && data2.containsKey(key)) {
                 keyDiff.put("key", key);
                 keyDiff.put("status", "added");
