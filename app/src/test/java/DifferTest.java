@@ -9,10 +9,10 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
-    private final String PATH_JSON_1 = "./src/test/resources/file1.json";
-    private final String PATH_JSON_2 = "./src/test/resources/file2.json";
-    private final String PATH_YAML_1 = "./src/test/resources/file1.yaml";
-    private final String PATH_YAML_2 = "./src/test/resources/file2.yaml";
+    private static final String PATH_JSON1 = "./src/test/resources/file1.json";
+    private static final String PATH_JSON2 = "./src/test/resources/file2.json";
+    private static final String PATH_YAML1 = "./src/test/resources/file1.yaml";
+    private static final String PATH_YAML2 = "./src/test/resources/file2.yaml";
     private static String expectedResultStylish;
 
     private static String expectedResultPlain;
@@ -36,36 +36,36 @@ public class DifferTest {
 
     @Test
     public void testJsonFiles() throws Exception {
-        String result = Differ.generate(PATH_JSON_1, PATH_JSON_2);
+        String result = Differ.generate(PATH_JSON1, PATH_JSON2);
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
     }
     @Test
     public void testYamlFiles() throws Exception {
-        String result = Differ.generate(PATH_YAML_1, PATH_YAML_2);
+        String result = Differ.generate(PATH_YAML1, PATH_YAML2);
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
     }
 
     @Test
     public void testJsonFilesPlain() throws Exception {
-        String result = Differ.generate(PATH_JSON_1, PATH_JSON_2, "plain");
+        String result = Differ.generate(PATH_JSON1, PATH_JSON2, "plain");
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultPlain);
     }
 
     @Test
     public void testYamlFilesPlain() throws Exception {
-        String result = Differ.generate(PATH_YAML_1, PATH_YAML_2, "plain");
+        String result = Differ.generate(PATH_YAML1, PATH_YAML2, "plain");
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultPlain);
     }
 
     @Test
     public void testJsonFilesJson() throws Exception {
-        String result = Differ.generate(PATH_JSON_1, PATH_JSON_2, "json");
+        String result = Differ.generate(PATH_JSON1, PATH_JSON2, "json");
         assertThat(result).isEqualTo(expectedResultJson);
     }
 
     @Test
     public void testYamlFilesJson() throws Exception {
-        String result = Differ.generate(PATH_YAML_1, PATH_YAML_2, "json");
+        String result = Differ.generate(PATH_YAML1, PATH_YAML2, "json");
         assertThat(result).isEqualTo(expectedResultJson);
     }
 }
