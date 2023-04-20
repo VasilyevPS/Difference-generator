@@ -3,8 +3,20 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a18102772b8cb1d5a257/maintainability)](https://codeclimate.com/github/VasilyevPS/java-project-71/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a18102772b8cb1d5a257/test_coverage)](https://codeclimate.com/github/VasilyevPS/java-project-71/test_coverage)
 
-### Asciinema - JSON comparison
-https://asciinema.org/a/0dU5EvOKXfyUrpVvpCanWxlV4
+# Difference generator
+## Description
+Console based application that determines the difference between two data structures. 
+It supports different input formats: yaml and json, and generates a report in the form of plain text, stylish and json.
 
-### Asciinema - YAML comparison
-https://asciinema.org/a/izYd8Gcqb1OISICi5VXV3R4qP
+
+## How to run
+
+`make build`
+
+`./build/install/app/bin/app`
+
+Use option `-h` for help.
+
+
+## Demonstration
+https://asciinema.org/a/dN4A7eZWKsNAJXK4jLY07OqIS
