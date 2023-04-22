@@ -7,18 +7,9 @@ import java.util.Map;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
-
-        Path path1 = getAbsolutePath(filepath1);
-        Path path2 = getAbsolutePath(filepath2);
-
-        String content1 = Files.readString(path1);
-        String content2 = Files.readString(path2);
-
-        String fileExtension1 = defineFileExtension(filepath1);
-        String fileExtension2 = defineFileExtension(filepath2);
-
-        Map<String, Object> data1 = Parser.parse(content1, fileExtension1);
-        Map<String, Object> data2 = Parser.parse(content2, fileExtension2);
+        
+        Map<String, Object> data1 = getDiffData(filepath1);
+        Map<String, Object> data2 = getDiffData(filepath2);
 
         return Formatter.chooseFormat(Comparator.compare(data1, data2), format);
     }
@@ -34,5 +25,12 @@ public class Differ {
 
     private static String defineFileExtension(String filepath) {
         return filepath.substring(filepath.lastIndexOf('.') + 1).toLowerCase();
+    }
+
+    private static Map<String, Object> getDiffData(String filepath) throws Exception {
+        Path path = getAbsolutePath(filepath);
+        String content = Files.readString(path);
+        String fileExtension = defineFileExtension(filepath);
+        return Parser.parse(content, fileExtension);
     }
 }
