@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
-        
+
         Map<String, Object> data1 = getDiffData(filepath1);
         Map<String, Object> data2 = getDiffData(filepath2);
 

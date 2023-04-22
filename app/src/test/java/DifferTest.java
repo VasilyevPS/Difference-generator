@@ -36,28 +36,28 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "json", "yaml" })
-    public void testDefault(String fileExtension) throws Exception {
+    void testDefault(String fileExtension) throws Exception {
         String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension);
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
     }
 
     @ParameterizedTest
     @ValueSource(strings = { "json", "yaml" })
-    public void testStylish(String fileExtension) throws Exception {
+    void testStylish(String fileExtension) throws Exception {
         String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension, "stylish");
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
     }
 
     @ParameterizedTest
     @ValueSource(strings = { "json", "yaml" })
-    public void testPlain(String fileExtension) throws Exception {
+    void testPlain(String fileExtension) throws Exception {
         String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension, "plain");
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultPlain);
     }
 
     @ParameterizedTest
     @ValueSource(strings = { "json", "yaml" })
-    public void testJson(String fileExtension) throws Exception {
+    void testJson(String fileExtension) throws Exception {
         String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension, "json");
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultJson);
     }
