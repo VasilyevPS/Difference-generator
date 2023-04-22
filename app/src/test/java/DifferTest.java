@@ -1,6 +1,7 @@
 import hexlet.code.Differ;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,63 +10,56 @@ import java.nio.file.Paths;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifferTest {
-    private static final String PATH_JSON1 = "./src/test/resources/file1.json";
-    private static final String PATH_JSON2 = "./src/test/resources/file2.json";
-    private static final String PATH_YAML1 = "./src/test/resources/file1.yaml";
-    private static final String PATH_YAML2 = "./src/test/resources/file2.yaml";
+
+    private static final String PATH_FILE_1 = "./src/test/resources/file1.";
+    private static final String PATH_FILE_2 = "./src/test/resources/file2.";
+
     private static String expectedResultStylish;
-
     private static String expectedResultPlain;
-
     private static String expectedResultJson;
 
     private static Path getAbsolutePath(String testResultFile) {
         return Paths.get("./src/test/resources/", testResultFile).toAbsolutePath().normalize();
     }
-    private static String readTestResults(String testFile) throws Exception {
+
+    private static String readFile(String testFile) throws Exception {
         Path testPath = getAbsolutePath(testFile);
         return Files.readString(testPath).trim();
     }
 
     @BeforeAll
     public static void beforeAll() throws Exception {
-        expectedResultJson = readTestResults("expectedResultJson.json");
-        expectedResultStylish = readTestResults("expectedResultStylish.txt");
-        expectedResultPlain = readTestResults("ExpectedResultPlain.txt");
+        expectedResultJson = readFile("expectedResultJson.json");
+        expectedResultStylish = readFile("expectedResultStylish.txt");
+        expectedResultPlain = readFile("ExpectedResultPlain.txt");
     }
 
-    @Test
-    public void testJsonFiles() throws Exception {
-        String result = Differ.generate(PATH_JSON1, PATH_JSON2);
-        assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
-    }
-    @Test
-    public void testYamlFiles() throws Exception {
-        String result = Differ.generate(PATH_YAML1, PATH_YAML2);
+    @ParameterizedTest
+    @ValueSource(strings = { "json", "yaml" })
+    public void testDefault(String fileExtension) throws Exception {
+        String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension);
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
     }
 
-    @Test
-    public void testJsonFilesPlain() throws Exception {
-        String result = Differ.generate(PATH_JSON1, PATH_JSON2, "plain");
+    @ParameterizedTest
+    @ValueSource(strings = { "json", "yaml" })
+    public void testStylish(String fileExtension) throws Exception {
+        String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension, "stylish");
+        assertThat(result).isEqualToIgnoringWhitespace(expectedResultStylish);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "json", "yaml" })
+    public void testPlain(String fileExtension) throws Exception {
+        String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension, "plain");
         assertThat(result).isEqualToIgnoringWhitespace(expectedResultPlain);
     }
 
-    @Test
-    public void testYamlFilesPlain() throws Exception {
-        String result = Differ.generate(PATH_YAML1, PATH_YAML2, "plain");
-        assertThat(result).isEqualToIgnoringWhitespace(expectedResultPlain);
+    @ParameterizedTest
+    @ValueSource(strings = { "json", "yaml" })
+    public void testJson(String fileExtension) throws Exception {
+        String result = Differ.generate(PATH_FILE_1 + fileExtension, PATH_FILE_2 + fileExtension, "json");
+        assertThat(result).isEqualToIgnoringWhitespace(expectedResultJson);
     }
 
-    @Test
-    public void testJsonFilesJson() throws Exception {
-        String result = Differ.generate(PATH_JSON1, PATH_JSON2, "json");
-        assertThat(result).isEqualTo(expectedResultJson);
-    }
-
-    @Test
-    public void testYamlFilesJson() throws Exception {
-        String result = Differ.generate(PATH_YAML1, PATH_YAML2, "json");
-        assertThat(result).isEqualTo(expectedResultJson);
-    }
 }
