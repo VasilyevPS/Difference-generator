@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DifferTest {
+public final class DifferTest {
 
     private static final String PATH_FILE_1 = "./src/test/resources/file1.";
     private static final String PATH_FILE_2 = "./src/test/resources/file2.";
