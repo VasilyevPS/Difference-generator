@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    private static StringBuilder result;
     public static String convertResult(List<Map<String, Object>> diffData) {
-        result = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         for (Map<String, Object> keyDiff: diffData) {
             switch (keyDiff.get("status").toString()) {
                 case ("added") -> result.append("Property '")
@@ -32,14 +31,12 @@ public class Plain {
     }
 
     private static String defineValue(Object value) {
-        String valueToPrint;
         if (value instanceof Map || value instanceof List) {
-            valueToPrint = "[complex value]";
+            return "[complex value]";
         } else if (value instanceof String) {
-            valueToPrint = "'" + value + "'";
+            return "'" + value + "'";
         } else {
-            valueToPrint = String.valueOf(value);
+            return String.valueOf(value);
         }
-        return valueToPrint;
     }
 }
