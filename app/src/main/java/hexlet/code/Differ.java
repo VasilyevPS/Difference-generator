@@ -8,8 +8,8 @@ import java.util.Map;
 public class Differ {
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
 
-        Map<String, Object> data1 = getDiffData(filepath1);
-        Map<String, Object> data2 = getDiffData(filepath2);
+        Map<String, Object> data1 = getFileData(filepath1);
+        Map<String, Object> data2 = getFileData(filepath2);
 
         return Formatter.chooseFormat(Comparator.compare(data1, data2), format);
     }
@@ -27,7 +27,7 @@ public class Differ {
         return filepath.substring(filepath.lastIndexOf('.') + 1).toLowerCase();
     }
 
-    private static Map<String, Object> getDiffData(String filepath) throws Exception {
+    private static Map<String, Object> getFileData(String filepath) throws Exception {
         Path path = getAbsolutePath(filepath);
         String content = Files.readString(path);
         String fileExtension = defineFileExtension(filepath);
