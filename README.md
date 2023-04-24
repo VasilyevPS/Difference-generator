@@ -13,6 +13,8 @@ It supports different input formats: yaml and json, and generates a report in th
 
 `make build`
 
+`make install`
+
 `./build/install/app/bin/app`
 
 Use option `-h` for help.
