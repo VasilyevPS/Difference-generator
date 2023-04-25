@@ -23,14 +23,14 @@ public class Differ {
         return Paths.get(path).toAbsolutePath().normalize();
     }
 
-    private static String defineFileExtension(String filepath) {
+    private static String defineDataType(String filepath) {
         return filepath.substring(filepath.lastIndexOf('.') + 1).toLowerCase();
     }
 
     private static Map<String, Object> getFileData(String filepath) throws Exception {
         Path path = getAbsolutePath(filepath);
         String content = Files.readString(path);
-        String fileExtension = defineFileExtension(filepath);
-        return Parser.parse(content, fileExtension);
+        String dataType = defineDataType(filepath);
+        return Parser.parse(content, dataType);
     }
 }

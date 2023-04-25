@@ -11,7 +11,7 @@ public class Plain {
                 case ("added") -> result.append("Property '")
                         .append(keyDiff.get("key"))
                         .append("' was added with value: ")
-                        .append(defineValue(keyDiff.get("newValue")))
+                        .append(convertValueToString(keyDiff.get("newValue")))
                         .append("\n");
                 case ("removed") -> result.append("Property '")
                         .append(keyDiff.get("key"))
@@ -19,9 +19,9 @@ public class Plain {
                 case ("updated") -> result.append("Property '")
                         .append(keyDiff.get("key"))
                         .append("' was updated. From ")
-                        .append(defineValue(keyDiff.get("oldValue")))
+                        .append(convertValueToString(keyDiff.get("oldValue")))
                         .append(" to ")
-                        .append(defineValue(keyDiff.get("newValue")))
+                        .append(convertValueToString(keyDiff.get("newValue")))
                         .append("\n");
                 default -> { }
             }
@@ -30,7 +30,7 @@ public class Plain {
         return result.toString();
     }
 
-    private static String defineValue(Object value) {
+    private static String convertValueToString(Object value) {
         if (value instanceof Map || value instanceof List) {
             return "[complex value]";
         } else if (value instanceof String) {

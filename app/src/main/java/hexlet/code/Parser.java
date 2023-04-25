@@ -7,8 +7,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.util.TreeMap;
 
 public class Parser {
-    public static TreeMap<String, Object> parse(String content, String fileExtension) throws Exception {
-        ObjectMapper mapper = chooseMapper(fileExtension);
+    public static TreeMap<String, Object> parse(String content, String dataType) throws Exception {
+        ObjectMapper mapper = chooseMapper(dataType);
         return mapper.readValue(content, new TypeReference<>() { });
     }
 
